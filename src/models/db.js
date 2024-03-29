@@ -2,8 +2,8 @@ const Sequelize = require('sequelize') //importando sequelize que facilita conex
 const sequelize = new Sequelize(
     'livraria',
     'root',
-    //'123456789', {
-    'Root@123', {
+    '123456789', {
+    //'Root@123', {
     host: 'localhost',
     dialect: 'mysql'
 });

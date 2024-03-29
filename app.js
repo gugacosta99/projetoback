@@ -14,7 +14,9 @@ app.use(express.json());//configuração para receber resposta do cliente, dados
 
 app.use('/imagens', express.static(__dirname + '/src/imagens'));//configuração para a rota reconhecer as imagens que estão dentro do meu diretório.
 //__dirname serve para ter caminho absoluto ao arquivo mencionado.
-app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use(express.static(path.join(__dirname, 'public'))); //pasta public tem os arquivos JAVASCRIPT
 
 app.get("/", function (req, res) { //definindo uma rota get para a raiz.
     res.status(200).redirect('/home.html');
@@ -37,14 +39,6 @@ app.get("/livro", function (req, res) {
 })
 
 
-/* app.post("/cadastro", function (req, res) { //configuração para receber resposta do cliente, dados inseridos.
-    const nome = req.body.nome
-    const autor = req.body.autor
-    const genero = req.body.genero
-    console.log("dados recebidos: Título: " + nome + ", Autor: " + autor + ", Genero: " + genero);
-}); */
-
-
 app.post('/cadastro', async (req, res) => { //enviando dados para o banco de dados
     await Livros.create(req.body)
         .then(() => {
@@ -55,20 +49,20 @@ app.post('/cadastro', async (req, res) => { //enviando dados para o banco de dad
         })
 });
 
-app.get('/livros', async (req, res) => {
+app.get('/livros', async (req, res) => { //mostrar todos os livros na pagina home
     const livros = await Livros.findAll();
     return res.json(livros);
 });
 
-app.get('/api/livro', async (req, res) => {
+app.get('/api/livro', async (req, res) => { //pagina de detalhes
     const id = req.query.id;
-    const livro = await Livros.findByPk(id);
-    if (!livro) {
+    const livro = await Livros.findByPk(id); // SELECT * FROM livros WHERE id = ?
+    if (livro) {
         return res.json(livro);
     } else {
         return res.status(404);
     }
-    
+
 });
 
 app.delete('/livro/:id', async (req, res) => {
@@ -80,3 +74,4 @@ app.delete('/livro/:id', async (req, res) => {
 
 app.listen(8080);
 console.log("http://localhost:8080");
+
