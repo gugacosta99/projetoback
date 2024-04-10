@@ -6,6 +6,7 @@ const app = express();
 
 const Livros = require('./src/models/Livros') //importando o arquivo das tabelas
 
+
 app.use(express.json()); //indicando que minha aplicação recebe dados do tipo json
 
 app.use(express.urlencoded({ extended: false }));
@@ -54,7 +55,7 @@ app.get('/livros', async (req, res) => { //mostrar todos os livros na pagina hom
     return res.json(livros);
 });
 
-app.get('/api/livro', async (req, res) => { //pagina de detalhes
+app.get('/api/livros', async (req, res) => { //pagina de detalhes
     const id = req.query.id;
     const livro = await Livros.findByPk(id); // SELECT * FROM livros WHERE id = ?
     if (livro) {

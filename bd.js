@@ -16,4 +16,3 @@ Sequelize.authenticate().then(function () {
 })
 
 module.exports = sequelize;
-
