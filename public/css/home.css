@@ -42,7 +42,7 @@ footer {
 
 .card:hover {
     transform: translateY(-20px);
-    background-color: #7575ff;
+    background-color: #d3d3d2;
     cursor: pointer;
     /* Movimenta o card para cima quando o mouse passa sobre ele */
 }

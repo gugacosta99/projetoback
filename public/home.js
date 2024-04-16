@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <br>
                         <button class="btn btn-danger" onclick="deletarLivro(${livro.id})">Deletar</button>
                     </div>
+                    <br>
                 `;
                     // Adicionamos esse card ao elemento HTML com id 'livros'
                     livros.appendChild(card);
